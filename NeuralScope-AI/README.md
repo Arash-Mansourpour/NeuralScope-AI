@@ -4,6 +4,12 @@ AI-Powered Neural Network Analysis & Diagnostics Platform
 
 NeuralScope AI is a full-stack tool for analyzing, visualizing, and diagnosing neural network architectures. Upload a model or pick a pretrained one and get an interactive report with architecture graphs, parameter breakdowns, health scores, and AI-generated insights.
 
+## Screenshots
+
+![Screenshot 1](https://github.com/Arash-Mansourpour/NeuralScope-AI/blob/main/Screenshot%20(766).png)
+![Screenshot 2](https://github.com/Arash-Mansourpour/NeuralScope-AI/blob/main/Screenshot%20(767).png)
+![Screenshot 3](https://github.com/Arash-Mansourpour/NeuralScope-AI/blob/main/Screenshot%20(768).png)
+
 ## Features
 
 - **Model Library** — Browse and analyze pretrained models (ResNet, VGG, DenseNet, and more)
