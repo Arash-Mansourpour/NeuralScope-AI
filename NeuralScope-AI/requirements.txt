@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+torch
+torchvision
+numpy
+scipy
+matplotlib
+networkx
+plotly
+groq
+pillow
+python-multipart
+pydantic
