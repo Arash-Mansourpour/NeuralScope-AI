@@ -103,4 +103,4 @@ curl -X POST http://localhost:8000/analyze \
 
 ## License
 
-MIT
+Apache License 2.0
