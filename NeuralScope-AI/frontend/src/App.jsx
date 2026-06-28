@@ -4,6 +4,7 @@ import ModelSelector from "./components/ModelSelector"
 import HealthScore from "./components/HealthScore"
 import ArchitectureGraph from "./components/ArchitectureGraph"
 import ParameterCharts from "./components/ParameterCharts"
+import AdvancedMetrics from "./components/AdvancedMetrics"
 import AIReport from "./components/AIReport"
 import ComparisonView from "./components/ComparisonView"
 import LayerHeatmap from "./components/LayerHeatmap"
@@ -35,10 +36,10 @@ export default function App() {
 
       <div style={{ background: "#1E1E2E", padding: "20px 40px", borderBottom: "1px solid #333" }}>
         <h1 style={{ margin: 0, fontSize: "24px", color: "#4A90D9" }}>
-          🔬 NeuralScope AI
+          NeuralScope AI
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "#888", fontSize: "13px" }}>
-          Neural Network Analysis & Diagnostics Platform
+          Neural Network Analysis & Diagnostics Platform v3.0
         </p>
       </div>
 
@@ -100,8 +101,9 @@ export default function App() {
                   <HealthScore data={result.health} modelInfo={result.model_info} />
                   <ParameterCharts data={result.parameters} />
                 </div>
+                <AdvancedMetrics data={result.advanced} />
                 <LayerHeatmap layerStats={result.parameters.layer_stats} />
-                <ArchitectureGraph graph={result.graph} />
+                <ArchitectureGraph graph={result.graph} architecture={result.architecture} />
                 <AIReport report={result.ai_report} />
               </div>
             )}

@@ -1,7 +1,7 @@
 export default function LayerHeatmap({ layerStats }) {
   if (!layerStats || layerStats.length === 0) return null
 
-  const getHeatColor, value, min, max) => {
+  const getHeatColor = (value, min, max) => {
     if (max === min) return "rgb(74, 144, 217)"
     const ratio = (value - min) / (max - min)
     const r = Math.round(74 + (231 - 74) * ratio)
@@ -28,7 +28,7 @@ export default function LayerHeatmap({ layerStats }) {
           {layerStats.map((layer, i) => (
             <div
               key={i}
-              title={`${layer.layer}: std=${layer.std}`}`}
+              title={`${layer.layer}: std=${layer.std}`}
               style={{
                 width: "24px",
                 height: "24px",

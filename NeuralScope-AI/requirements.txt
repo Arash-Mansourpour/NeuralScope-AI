@@ -11,3 +11,4 @@ groq
 pillow
 python-multipart
 pydantic
+scipy

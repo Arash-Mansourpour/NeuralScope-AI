@@ -9,10 +9,11 @@ from models.model_loader import load_model, get_available_models
 from analyzer.architecture import analyze_architecture
 from analyzer.parameters import analyze_parameters
 from analyzer.health_score import calculate_health_score
+from analyzer.advanced_metrics import compute_all_advanced_metrics
 from visualizer.graph import generate_architecture_graph
 from groq_engine import generate_ai_report
 
-app = FastAPI(title="NeuralScope AI", version="2.0.0")
+app = FastAPI(title="NeuralScope AI", version="3.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,7 +33,7 @@ class CompareRequest(BaseModel):
 
 @app.get("/")
 def root():
-    return {"status": "NeuralScope AI is running", "version": "2.0.0"}
+    return {"status": "NeuralScope AI is running", "version": "3.0.0"}
 
 @app.get("/models")
 def list_models():
@@ -48,6 +49,7 @@ def analyze_model(request: AnalyzeRequest):
         param_data = analyze_parameters(model)
         health_data = calculate_health_score(arch_data, param_data, model_data)
         graph_b64 = generate_architecture_graph(model, model_data["meta"]["name"])
+        advanced_data = compute_all_advanced_metrics(model)
         ai_report = generate_ai_report(
             model_data["meta"]["name"],
             arch_data,
@@ -68,6 +70,7 @@ def analyze_model(request: AnalyzeRequest):
             "architecture": arch_data,
             "parameters": param_data,
             "health": health_data,
+            "advanced": advanced_data,
             "graph": graph_b64,
             "ai_report": ai_report
         }
@@ -117,6 +120,7 @@ async def upload_model(file: UploadFile = File(...)):
                     "meta": {"name": file.filename, "description": "Custom uploaded model", "family": "Custom"}
                 })
                 graph_b64 = generate_architecture_graph(model, file.filename)
+                advanced_data = compute_all_advanced_metrics(model)
                 ai_report = generate_ai_report(
                     file.filename,
                     arch_data,
@@ -140,6 +144,7 @@ async def upload_model(file: UploadFile = File(...)):
                     "architecture": arch_data,
                     "parameters": param_data,
                     "health": health_data,
+                    "advanced": advanced_data,
                     "graph": graph_b64,
                     "ai_report": ai_report
                 }
